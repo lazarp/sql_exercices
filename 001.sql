@@ -1,0 +1,33 @@
+SELECT
+    CITY,
+    LEN_CITY
+FROM(
+    SELECT
+        CITY,
+        LEN_CITY
+    FROM(
+        SELECT
+            CITY,
+            CHAR_LENGTH(CITY) AS LEN_CITY
+        FROM STATION
+    ) AS SHORTEST
+    ORDER BY LEN_CITY, CITY
+    LIMIT 1
+) C1
+UNION
+SELECT
+    CITY,
+    LEN_CITY
+FROM(
+    SELECT
+        CITY,
+        LEN_CITY
+    FROM(
+        SELECT
+            CITY,
+            CHAR_LENGTH(CITY) AS LEN_CITY
+        FROM STATION
+    ) AS LONGEST
+    ORDER BY LEN_CITY DESC, CITY
+    LIMIT 1
+) C2
